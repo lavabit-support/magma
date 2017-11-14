@@ -1,3 +1,9 @@
+services: mysql
+  - mysql
+  - memcached
+before_install:
+  - mysql -e 'CREATE DATABASE magma;'
+  - dev/scripts/database/schema.reset travis "" magma
 install: make get-deps
 language: c
 compiler: gcc
