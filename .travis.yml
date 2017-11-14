@@ -1,17 +1,21 @@
-services: mysql
-  - mysql
-  - memcached
-before_install:
+dist: trusty
+language: c
+compiler: gcc
+sudo: required
+install:
+  - sudo apt-get -qq update
+  - sudo apt-get install -y build-essential
+  - sudo apt-get install -y memcached libevent-dev
+  - sudo apt-get install -y python-crypto python-cryptography
+  - sudo apt-get install -y mysql-server mysql-client mysql-common libdbi-perl libdbd-mysql-perl
+  - sudo apt-get install -y make autoconf automake libtool gdb valgrind valgrind-dbg cmake pkg-config sysstat inotify-tools
+  - sudo apt-get install -y libc6-dev libc++-dev libbsd-dev libncurses5-dev libmpfr4 libmpfr-dev libsubunit-dev libsubunit0
+before_script:
+  - sudo systemctl start mariadb.service
+  - sudo systemctl start postfix.service
+  - sudo systemctl start memcached.service
   - mysql -e "CREATE DATABASE Sandbox;"
   - mysql -e "CREATE USER 'mytool'@'localhost' IDENTIFIED BY 'aComplex1';"
   - mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'mytool'@'localhost' WITH GRANT OPTION;"
   - dev/scripts/database/schema.reset.sh
-install:
-  - sudo apt-get -qq update
-  - sudo apt-get install -y make autoconf automake libtool gdb valgrind valgrind-dbg cmake pkg-config sysstat inotify-tools
-  - sudo apt-get install -y libc6-dev libc++-dev libbsd-dev libncurses5-dev libmpfr4 libmpfr-dev libsubunit-dev libsubunit0 
-language: c
-compiler: gcc
 script: make all
-sudo: required
-dist: trusty
