@@ -16,10 +16,8 @@ before_script:
 script: 
   - dev/scripts/builders/build.lib.sh extract
   - dev/scripts/builders/build.lib.sh prep
-  - dev/scripts/builders/build.lib.sh follow &
+  - dev/scripts/builders/build.lib.sh openssl-tail | grep -E "^make|^making" &
   - dev/scripts/builders/build.lib.sh build
   - dev/scripts/builders/build.lib.sh combine
   - make all
-after_failure: 
-  - dev/scripts/builders/build.lib.sh log
   
