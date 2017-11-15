@@ -10,7 +10,6 @@ install:
   - sudo apt-get install -y make autoconf automake libtool gdb valgrind valgrind-dbg cmake pkg-config sysstat inotify-tools
   - sudo apt-get install -y libc6-dev libc++-dev libbsd-dev libncurses5-dev libmpfr4 libmpfr-dev libsubunit-dev libsubunit0
 before_script:
-  - sudo systemctl start mariadb.service
   - sudo systemctl start postfix.service
   - sudo systemctl start memcached.service
   - mysql -e "CREATE DATABASE Sandbox;"
