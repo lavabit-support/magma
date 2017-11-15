@@ -1,5 +1,5 @@
 os: linux
-language: c
+language: c++
 dist: trusty
 group: stable
 compiler: gcc
@@ -10,6 +10,7 @@ addons:
   apt:
     packages:
     - libbsd-dev
+    - gdb
     - make 
     - cmake
     - autoconf 
@@ -20,6 +21,13 @@ addons:
     - valgrind-dbg  
     - libsubunit-dev
     - build-essential
+    - sysstat
+    - inotify-tools
+    - libc6-dev
+    - ibc++-dev
+    - libncurses5-dev 
+    - libmpfr4 
+    - libmpfr-dev
 before_script:
   - mysql -e "CREATE DATABASE Sandbox;"
   - mysql -e "CREATE USER 'mytool'@'localhost' IDENTIFIED BY 'aComplex1';"
