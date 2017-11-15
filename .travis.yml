@@ -73,5 +73,6 @@ script:
   - printf "magma.iface.database.host = 127.0.0.1\n" >> sandbox/etc/magma.sandbox.config
   - printf "magma.system.domain = travis.local\n" >> sandbox/etc/magma.sandbox.config
   - make all
+  - cat res/sql/Hostname.sql
   - make check
   
