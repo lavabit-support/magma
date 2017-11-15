@@ -66,6 +66,7 @@ script:
   - dev/scripts/builders/build.lib.sh build
   - dev/scripts/builders/build.lib.sh combine
   - killall tail
+  - sed -i -e "/magma.iface.database.socket_path/d" sandbox/etc/magma.sandbox.config
   - make all
   - make check
   
