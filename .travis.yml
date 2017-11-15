@@ -14,7 +14,11 @@ before_script:
   - mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'mytool'@'localhost' WITH GRANT OPTION;"
   - dev/scripts/database/schema.reset.sh
 script: 
+  - dev/scripts/builders/build.lib.sh extract
+  - dev/scripts/builders/build.lib.sh prep
   - dev/scripts/builders/build.lib.sh follow &
+  - dev/scripts/builders/build.lib.sh build
+  - dev/scripts/builders/build.lib.sh combine
   - make all
 after_failure: 
   - dev/scripts/builders/build.lib.sh log
