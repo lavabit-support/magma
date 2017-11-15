@@ -69,6 +69,7 @@ script:
   - dev/scripts/builders/build.lib.sh extract
   - dev/scripts/builders/build.lib.sh prep
   - dev/scripts/builders/build.lib.sh follow | grep -E "^making" &
+  - for ((i = 0; i < 60; ++i)); do date ; sleep 60; done &
   - dev/scripts/builders/build.lib.sh build
   - dev/scripts/builders/build.lib.sh combine
   - make all
