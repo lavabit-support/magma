@@ -74,8 +74,9 @@ script:
   - printf "magma.system.domain = travis.local\n" >> sandbox/etc/magma.sandbox.config
   - printf "magma.secure.memory.enable = false\n" >> sandbox/etc/magma.sandbox.config
   - chmod 700 sandbox/etc/tls.localhost.localdomain.pem
-  - chmod 700 sandbox/etc/dime.localhost.localdomain.pem
   - chmod 700 sandbox/etc/dkim.localhost.localdomain.pem
+  - chmod 700 sandbox/etc/dime.localhost.localdomain.key
+  - chmod 700 sandbox/etc/dime.localhost.localdomain.signet
   - ulimit -l 65536
   - make all
   - make check
