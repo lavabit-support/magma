@@ -74,6 +74,7 @@ script:
   - for ((i = 0; i < 60; ++i)); do date ; sleep 60; done &
   - dev/scripts/builders/build.lib.sh build
   - dev/scripts/builders/build.lib.sh combine
+  - killall tail
   - make all
   - make check
   
