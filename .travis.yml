@@ -3,7 +3,9 @@ language: ruby
 group: stable
 dist: trusty
 os: linux
-services: mysql memcached
+services: 
+  - mysql 
+  - memcached
 install:
   - sudo apt-get --yes install libbsd-dev
 before_script:
