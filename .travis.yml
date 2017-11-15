@@ -18,7 +18,7 @@ addons:
     - libtool
     - valgrind 
     - pkg-config
-    - valgrind-dbg  
+    - valgrind-dbg
     - libsubunit-dev
     - build-essential
     - sysstat
@@ -28,6 +28,38 @@ addons:
     - libncurses5-dev 
     - libmpfr4 
     - libmpfr-dev
+    - gcc
+    - g++
+    - gcc-multilib
+    - flex
+    - bison
+    - libpython2.7
+    - patch
+    - libarchive13
+    - libsubunit-dev
+    - libsubunit0
+    - git
+    - git-man
+    - liberror-perl
+    - rsync
+    - wget
+    - liberror-perl
+    - wget
+    - curl
+    - rsync
+    - gnupg
+    - mlocate
+    - sysstat
+    - lsof
+    - pciutils
+    - usbutils
+    - mysql-client
+    - mysql-server
+    - perl
+    - libdbi-perl
+    - libmysqlclient20
+    - mysql-common
+    - libdbd-mysql-perl
 before_script:
   - mysql -e "CREATE DATABASE Sandbox;"
   - mysql -e "CREATE USER 'mytool'@'localhost' IDENTIFIED BY 'aComplex1';"
