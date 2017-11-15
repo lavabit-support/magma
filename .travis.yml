@@ -1,5 +1,7 @@
-dist: trusty
+os: linux
 language: c
+dist: trusty
+group: stable
 compiler: gcc
 sudo: required
 services: mysql
