@@ -6,8 +6,20 @@ compiler: gcc
 services: 
   - mysql
   - memcached
-install:
-  - sudo apt-get --yes install libbsd-dev
+addons:
+  apt:
+    packages:
+    - libbsd-dev
+    - make 
+    - cmake
+    - autoconf 
+    - automake 
+    - libtool
+    - valgrind 
+    - pkg-config
+    - valgrind-dbg  
+    - libsubunit-dev
+    - build-essential
 before_script:
   - mysql -e "CREATE DATABASE Sandbox;"
   - mysql -e "CREATE USER 'mytool'@'localhost' IDENTIFIED BY 'aComplex1';"
