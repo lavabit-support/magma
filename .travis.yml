@@ -40,10 +40,7 @@ addons:
     - libsubunit0
     - git
     - git-man
-    - liberror-perl
     - rsync
-    - wget
-    - liberror-perl
     - wget
     - curl
     - rsync
@@ -53,10 +50,6 @@ addons:
     - lsof
     - pciutils
     - usbutils
-    - perl
-    - libdbi-perl
-    - mysql-common
-    - libdbd-mysql-perl
 before_script:
   - mysql -e "CREATE DATABASE Sandbox;"
   - mysql -e "CREATE USER 'mytool'@'localhost' IDENTIFIED BY 'aComplex1';"
