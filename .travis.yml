@@ -67,6 +67,8 @@ script:
   - dev/scripts/builders/build.lib.sh combine
   - killall tail
   - sed -i -e "/magma.iface.database.socket_path/d" sandbox/etc/magma.sandbox.config
+  - sed -i -e "/magma.iface.database.host/d" sandbox/etc/magma.sandbox.config
+  - printf "magma.iface.database.host = 127.0.0.1\n" >> sandbox/etc/magma.sandbox.config
   - make all
   - make check
   
