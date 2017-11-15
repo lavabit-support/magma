@@ -53,8 +53,6 @@ addons:
     - lsof
     - pciutils
     - usbutils
-    - mysql-client
-    - mysql-server
     - perl
     - libdbi-perl
     - mysql-common
