@@ -86,5 +86,4 @@ script:
   - chmod 700 sandbox/etc/dime.localhost.localdomain.key
   - chmod 700 sandbox/etc/dime.localhost.localdomain.signet
   - make all
-  - make check
   
