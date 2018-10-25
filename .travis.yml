@@ -87,6 +87,6 @@ script:
   - chmod 700 sandbox/etc/dime.localhost.localdomain.key
   - chmod 700 sandbox/etc/dime.localhost.localdomain.signet
   - make all
-  - sudo su -l -c '/home/travis/build/lavabit-support/magma/magmad.check /home/travis/build/lavabit-support/sandbox/etc/magma.sandbox.config'
+  - sudo su -l -c '/home/travis/build/lavabit-support/magma/magmad.check /home/travis/build/lavabit-support/magma/sandbox/etc/magma.sandbox.config'
   - find lib/local/ magmad.so -iname "*.so" -exec ldd {} \;
   - dev/scripts/builders/build.lib.sh load
