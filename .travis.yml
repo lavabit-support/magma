@@ -87,7 +87,5 @@ script:
   - chmod 700 sandbox/etc/dkim.localhost.localdomain.pem
   - chmod 700 sandbox/etc/dime.localhost.localdomain.key
   - chmod 700 sandbox/etc/dime.localhost.localdomain.signet
-  - cd $TRAVIS_BUILD_DIR
-  - make all && make check && exit 0  - dev/scripts/launch/check.run.sh
-  - sudo su -l -c "cd $TRAVIS_BUILD_DIR/; ./magmad.check sandbox/etc/magma.sandbox.config"
+  - make all && dev/scripts/launch/check.run.sh
  
