@@ -65,14 +65,14 @@ script:
   - git fetch upstream
   - git reset --hard upstream/develop
   - git checkout origin/develop -- .travis.yml
+  - (for ((i = 0; i < 60; ++i)); do sleep 60 ; date ; done) & LOOP_PID=$! ; disown
   - dev/scripts/database/schema.reset.sh
   - dev/scripts/builders/build.lib.sh extract
   - dev/scripts/builders/build.lib.sh prep
-  - (dev/scripts/builders/build.lib.sh follow | grep -E "^making") & TAIL_PID=$! ; disown
-  - (for ((i = 0; i < 60; ++i)); do sleep 60 ; date ; done) & LOOP_PID=$! ; disown
   - dev/scripts/builders/build.lib.sh build
   - dev/scripts/builders/build.lib.sh combine
-  - killall tail && kill $LOOP_PID
+  - dev/scripts/builders/build.lib.sh load
+  - kill $LOOP_PID
   - sed -i -e "/magma.iface.database.socket_path/d" sandbox/etc/magma.sandbox.config
   - sed -i -e "/magma.iface.database.host/d" sandbox/etc/magma.sandbox.config
   - sed -i -e "/magma.secure.memory.length/d" sandbox/etc/magma.sandbox.config
@@ -88,7 +88,4 @@ script:
   - chmod 700 sandbox/etc/dime.localhost.localdomain.signet
   - make all
   - sudo su -l -c '/home/travis/build/lavabit-support/magma/magmad.check /home/travis/build/lavabit-support/magma/sandbox/etc/magma.sandbox.config'
-  - find lib/local/ magmad.so -iname "*.so" -exec ldd {} \;
-  - dev/scripts/builders/build.lib.sh load
-  - dev/scripts/builders/build.lib.sh gd-log
-  
+ 
