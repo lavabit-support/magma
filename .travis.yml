@@ -68,8 +68,8 @@ script:
   - dev/scripts/database/schema.reset.sh
   - dev/scripts/builders/build.lib.sh extract
   - dev/scripts/builders/build.lib.sh prep
-  - dev/scripts/builders/build.lib.sh follow | grep -E "^making" &
-  - (for ((i = 0; i < 60; ++i)); do date ; sleep 60; done) & LOOP_PID=$!
+  - dev/scripts/builders/build.lib.sh follow | grep -E "^making" & ; disown
+  - (for ((i = 0; i < 60; ++i)); do date ; sleep 60; done) & LOOP_PID=$! ; disown
   - dev/scripts/builders/build.lib.sh build
   - dev/scripts/builders/build.lib.sh combine
   - killall tail && kill $LOOP_PID
