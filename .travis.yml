@@ -91,7 +91,7 @@ script:
   - chmod 700 sandbox/etc/dime.localhost.localdomain.key
   - chmod 700 sandbox/etc/dime.localhost.localdomain.signet
   - make all
+  - make check
   - ls -alh
-  - cat sandbox/etc/magma.sandbox.config
+  - cat sandbox/etc/magma.sandbox.config | grep -Ev "magma.servers|^$"
   - env
-  - dev/scripts/launch/check.run.sh
