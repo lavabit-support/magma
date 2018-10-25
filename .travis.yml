@@ -47,6 +47,7 @@ addons:
     - patch
     - pciutils
     - pkg-config
+    - postfix
     - rsync
     - rsync
     - sysstat
