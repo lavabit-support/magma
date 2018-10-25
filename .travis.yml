@@ -3,6 +3,7 @@ language: c++
 dist: trusty
 group: stable
 compiler: gcc
+sudo: required
 notifications:
   email:
     on_success: never
@@ -39,7 +40,6 @@ addons:
     - libpython2.7
     - libsubunit0
     - libsubunit-dev
-    - libsubunit-dev
     - libtool
     - lsof
     - make 
@@ -49,8 +49,6 @@ addons:
     - pkg-config
     - postfix
     - rsync
-    - rsync
-    - sysstat
     - sysstat
     - usbutils
     - valgrind 
@@ -91,7 +89,7 @@ script:
   - chmod 700 sandbox/etc/dime.localhost.localdomain.key
   - chmod 700 sandbox/etc/dime.localhost.localdomain.signet
   - make all
-  - make check
+  - sudo make check
   - ls -alh
   - cat sandbox/etc/magma.sandbox.config | grep -Ev "magma.servers|^$"
   - env
