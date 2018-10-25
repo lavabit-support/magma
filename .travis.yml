@@ -89,7 +89,4 @@ script:
   - chmod 700 sandbox/etc/dime.localhost.localdomain.key
   - chmod 700 sandbox/etc/dime.localhost.localdomain.signet
   - make all
-  - sudo make VERBOSE=yes check
-  - ls -alh
-  - cat sandbox/etc/magma.sandbox.config | grep -Ev "magma.servers|^$"
-  - env
+  - sudo strace /home/travis/build/lavabit-support/magma/magmad.check sandbox/etc/magma.sandbox.config
