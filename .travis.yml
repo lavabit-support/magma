@@ -90,3 +90,5 @@ script:
   - sudo su -l -c '/home/travis/build/lavabit-support/magma/magmad.check /home/travis/build/lavabit-support/magma/sandbox/etc/magma.sandbox.config'
   - find lib/local/ magmad.so -iname "*.so" -exec ldd {} \;
   - dev/scripts/builders/build.lib.sh load
+  - dev/scripts/builders/build.lib.sh gd-log
+  
