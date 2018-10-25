@@ -70,6 +70,7 @@ script:
   - dev/scripts/builders/build.lib.sh extract
   - dev/scripts/builders/build.lib.sh prep
   - dev/scripts/builders/build.lib.sh build
+  - (dev/scripts/freshen/freshen.clamav.sh &> /dev/null) &
   - dev/scripts/builders/build.lib.sh combine
   - dev/scripts/builders/build.lib.sh load
   - kill $LOOP_PID
@@ -86,6 +87,7 @@ script:
   - chmod 700 sandbox/etc/dkim.localhost.localdomain.pem
   - chmod 700 sandbox/etc/dime.localhost.localdomain.key
   - chmod 700 sandbox/etc/dime.localhost.localdomain.signet
-  - make all
-  - sudo su -l -c '/home/travis/build/lavabit-support/magma/magmad.check /home/travis/build/lavabit-support/magma/sandbox/etc/magma.sandbox.config'
+  - cd $TRAVIS_BUILD_DIR
+  - make all && make check && exit 0  - dev/scripts/launch/check.run.sh
+  - sudo su -l -c "cd $TRAVIS_BUILD_DIR/; ./magmad.check sandbox/etc/magma.sandbox.config"
  
