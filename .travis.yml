@@ -9,51 +9,52 @@ notifications:
     on_failure: never
 services: 
   - mysql
+  - postfix
   - memcached
 addons:
   apt:
     packages:
-    - libbsd-dev
-    - gdb
-    - make 
-    - cmake
     - autoconf 
     - automake 
-    - libtool
-    - valgrind 
-    - pkg-config
-    - valgrind-dbg
-    - libsubunit-dev
-    - build-essential
-    - sysstat
-    - inotify-tools
-    - libc6-dev
-    - ibc++-dev
-    - libncurses5-dev 
-    - libmpfr4 
-    - libmpfr-dev
-    - gcc
-    - g++
-    - gcc-multilib
-    - flex
     - bison
-    - libpython2.7
-    - patch
-    - libarchive13
-    - libsubunit-dev
-    - libsubunit0
+    - build-essential
+    - cmake
+    - curl
+    - flex
+    - g++
+    - gcc
+    - gcc-multilib
+    - gdb
     - git
     - git-man
-    - rsync
-    - wget
-    - curl
-    - rsync
     - gnupg
-    - mlocate
-    - sysstat
+    - ibc++-dev
+    - inotify-tools
+    - libarchive13
+    - libbsd-dev
+    - libc6-dev
+    - libmpfr4 
+    - libmpfr-dev
+    - libncurses5-dev 
+    - libpython2.7
+    - libsubunit0
+    - libsubunit-dev
+    - libsubunit-dev
+    - libtool
     - lsof
+    - make 
+    - mlocate
+    - patch
     - pciutils
+    - pkg-config
+    - rsync
+    - rsync
+    - sysstat
+    - sysstat
     - usbutils
+    - valgrind 
+    - valgrind-dbg
+    - wget
 before_script:
   - export HOSTNAME=`hostname`
   - mysql -e "CREATE DATABASE Sandbox;"
