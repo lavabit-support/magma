@@ -62,13 +62,10 @@ before_script:
 script: 
   - export HOSTNAME=`hostname`
   - export HASH=`git show  --quiet | grep commit | awk -F' ' '{print $2}'`
-  - git branch -a
   - git remote add upstream https://github.com/lavabit/magma.git
   - git fetch upstream
   - git reset --hard upstream/develop
-  - git branch -a
   - git checkout $HASH -- .travis.yml
-  - git branch -a
   - (for ((i = 0; i < 60; ++i)); do sleep 60 ; date ; done) & LOOP_PID=$! ; disown
   - dev/scripts/database/schema.reset.sh
   - dev/scripts/builders/build.lib.sh extract
