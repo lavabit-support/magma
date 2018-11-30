@@ -1,9 +1,8 @@
 os: linux
-language: c++
 dist: 
-  - precise
   - trusty
   - xenial
+language: c++
 group: stable
 compiler: gcc
 sudo: required
