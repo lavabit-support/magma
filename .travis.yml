@@ -1,9 +1,6 @@
 os: linux
-dist: 
-  - trusty
-  - xenial
+dist: xenial
 language: c++
-group: stable
 compiler: gcc
 sudo: required
 notifications:
