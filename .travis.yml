@@ -14,46 +14,48 @@ services:
   - memcached
 addons:
   apt:
+    config:
+      retries: true
     packages:
-    - autoconf 
-    - automake 
-    - bison
-    - build-essential
-    - cmake
-    - curl
-    - flex
-    - g++
-    - gcc
-    - gcc-multilib
-    - gdb
-    - git
-    - git-man
-    - gnupg
-    - ibc++-dev
-    - inotify-tools
-    - libarchive13
-    - libbsd-dev
-    - libc6-dev
-    - libmpfr4 
-    - libmpfr-dev
-    - libncurses5-dev 
-    - libpython2.7
-    - libsubunit0
-    - libsubunit-dev
-    - libtool
-    - lsof
-    - make 
-    - mlocate
-    - patch
-    - pciutils
-    - pkg-config
-    - postfix
-    - rsync
-    - sysstat
-    - usbutils
-    - valgrind 
-    - valgrind-dbg
-    - wget
+      - autoconf 
+      - automake 
+      - bison
+      - build-essential
+      - cmake
+      - curl
+      - flex
+      - g++
+      - gcc
+      - gcc-multilib
+      - gdb
+      - git
+      - git-man
+      - gnupg
+      - ibc++-dev
+      - inotify-tools
+      - libarchive13
+      - libbsd-dev
+      - libc6-dev
+      - libmpfr4 
+      - libmpfr-dev
+      - libncurses5-dev 
+      - libpython2.7
+      - libsubunit0
+      - libsubunit-dev
+      - libtool
+      - lsof
+      - make 
+      - mlocate
+      - patch
+      - pciutils
+      - pkg-config
+      - postfix
+      - rsync
+      - sysstat
+      - usbutils
+      - valgrind 
+      - valgrind-dbg
+      - wget
 before_script:
   - export HOSTNAME=`hostname`
   - mysql -e "CREATE DATABASE Sandbox;"
