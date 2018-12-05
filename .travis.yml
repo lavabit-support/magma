@@ -73,7 +73,7 @@ script:
   - git checkout $HASH -- .travis.yml
   - sudo -E $HOME/bin/prlimit --pid "$$" --stack=unlimited:unlimited;
   - sudo -E $HOME/bin/prlimit --pid "$$" --memlock=unlimited:unlimited;
- - (for ((i = 0; i < 60; ++i)); do sleep 60 ; printf "%s (%s )\n" "`date`" "`uptime`" ; done) & LOOP_PID=$! ; disown 
+  - (for ((i = 0; i < 60; ++i)); do sleep 60 ; printf "%s (%s )\n" "`date`" "`uptime`" ; done) & LOOP_PID=$! ; disown 
   - dev/scripts/database/schema.reset.sh
   - dev/scripts/builders/build.lib.sh extract
   - dev/scripts/builders/build.lib.sh prep
