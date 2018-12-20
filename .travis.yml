@@ -6,6 +6,32 @@ notifications:
   email:
     on_success: never
     on_failure: never
+matrix:
+  include:
+  - stage: cache
+    dist: trusty
+    script: true
+    before_script: true
+  - stage: cache
+    dist: xenial
+    script: true
+    before_script: true
+  - stage: run
+    dist: trusty
+    after_install:
+      - eval MATRIX_EVAL="FLAGS='-DMAGMA_PEDANTIC -O0' TARGET=all"
+  - stage: run
+    dist: trusty
+    after_install:
+      - eval MATRIX_EVAL="FLAGS='-UMAGMA_PEDANTIC -O0' TARGET=all"
+  - stage: run
+    dist: xenial
+    after_install:
+      - eval MATRIX_EVAL="FLAGS='-DMAGMA_PEDANTIC -O0' TARGET=all"
+  - stage: run
+    dist: xenial
+    after_install:
+      - eval MATRIX_EVAL="FLAGS='-UMAGMA_PEDANTIC -O0' TARGET=all"
 before_install:
   - sudo -E apt-add-repository -y "ppa:ubuntu-toolchain-r/test"
   - curl -sSL "https://build.travis-ci.org/files/gpg/llvm-toolchain-`lsb_release -c -s`-6.0.asc" | sudo -E apt-key add -
