@@ -20,20 +20,20 @@ matrix:
   - stage: run
     dist: trusty
     before_script:
-      - sudo echo "export FLAGS='-DMAGMA_PEDANTIC -O0' ; export TARGET=all" > /etc/profile.d/params.sh
+      - echo "export FLAGS='-DMAGMA_PEDANTIC -O0' ; export TARGET=all" >> $HOME/.bashrc
   - stage: run
     dist: trusty
     before_script:
-      - sudo echo "export FLAGS='-UMAGMA_PEDANTIC -O0' ; export TARGET=all" > /etc/profile.d/params.sh
+      - echo "export FLAGS='-UMAGMA_PEDANTIC -O0' ; export TARGET=all" >> $HOME/.bashrc
   - stage: run
     dist: xenial
     before_script:
-      - sudo echo "export FLAGS='-DMAGMA_PEDANTIC -O0' ; export TARGET=all" > /etc/profile.d/params.sh
+      - echo "export FLAGS='-DMAGMA_PEDANTIC -O0' ; export TARGET=all" >> $HOME/.bashrc
       - sudo systemctl start mysql && sudo systemctl start postfix && sudo systemctl start memcached
   - stage: run
     dist: xenial
     before_script:
-      - sudo echo "export FLAGS='-UMAGMA_PEDANTIC -O0' ; export TARGET=all" > /etc/profile.d/params.sh
+      - echo "export FLAGS='-UMAGMA_PEDANTIC -O0' ; export TARGET=all" >> $HOME/.bashrc
       - sudo systemctl start mysql && sudo systemctl start postfix && sudo systemctl start memcached
 before_install:
   - sudo -E apt-add-repository -y "ppa:ubuntu-toolchain-r/test"
