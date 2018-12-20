@@ -20,20 +20,20 @@ matrix:
   - stage: run
     dist: trusty
     before_script:
-      - echo "export FLAGS='-DMAGMA_PEDANTIC -O0' ; export TARGET=all" >> $HOME/.bashrc
+      -  export FLAGS='-DMAGMA_PEDANTIC -O0' ; export TARGET=all ; export COMPILER=gcc
   - stage: run
     dist: trusty
     before_script:
-      - echo "export FLAGS='-UMAGMA_PEDANTIC -O0' ; export TARGET=all" >> $HOME/.bashrc
+      -  export FLAGS='-UMAGMA_PEDANTIC -O0' ; export TARGET=all ; export COMPILER=gcc
   - stage: run
     dist: xenial
     before_script:
-      - echo "export FLAGS='-DMAGMA_PEDANTIC -O0' ; export TARGET=all" >> $HOME/.bashrc
+      - export FLAGS='-DMAGMA_PEDANTIC -O0' ; export TARGET=all ; export COMPILER=gcc
       - sudo systemctl start mysql && sudo systemctl start postfix && sudo systemctl start memcached
   - stage: run
     dist: xenial
     before_script:
-      - echo "export FLAGS='-UMAGMA_PEDANTIC -O0' ; export TARGET=all" >> $HOME/.bashrc
+      - export FLAGS='-UMAGMA_PEDANTIC -O0' ; export TARGET=all ; export COMPILER=gcc
       - sudo systemctl start mysql && sudo systemctl start postfix && sudo systemctl start memcached
 before_install:
   - sudo -E apt-add-repository -y "ppa:ubuntu-toolchain-r/test"
