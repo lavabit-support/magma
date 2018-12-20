@@ -12,10 +12,14 @@ matrix:
     dist: trusty
     script: true
     before_script: true
+    after_install:
+      - wait
   - stage: cache
     dist: xenial
     script: true
     before_script: true
+    after_install:
+      - wait
   - stage: run
     dist: trusty
     after_install:
