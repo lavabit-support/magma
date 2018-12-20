@@ -20,20 +20,20 @@ matrix:
   - stage: run
     dist: trusty
     before_script:
-      - eval MATRIX_EVAL="FLAGS='-DMAGMA_PEDANTIC -O0' TARGET=all"
+      - export FLAGS='-DMAGMA_PEDANTIC -O0' ; export TARGET=all
   - stage: run
     dist: trusty
     before_script:
-      - eval MATRIX_EVAL="FLAGS='-UMAGMA_PEDANTIC -O0' TARGET=all"
+      - export FLAGS='-UMAGMA_PEDANTIC -O0' ; export TARGET=all
   - stage: run
     dist: xenial
     before_script:
-      - eval MATRIX_EVAL="FLAGS='-DMAGMA_PEDANTIC -O0' TARGET=all"
+      - export FLAGS='-DMAGMA_PEDANTIC -O0' ; export TARGET=all
       - sudo systemctl start mysql && sudo systemctl start postfix && sudo systemctl start memcached
   - stage: run
     dist: xenial
     before_script:
-      - eval MATRIX_EVAL="FLAGS='-UMAGMA_PEDANTIC -O0' TARGET=all"
+      - export FLAGS='-UMAGMA_PEDANTIC -O0' ; export TARGET=all
       - sudo systemctl start mysql && sudo systemctl start postfix && sudo systemctl start memcached
 before_install:
   - sudo -E apt-add-repository -y "ppa:ubuntu-toolchain-r/test"
