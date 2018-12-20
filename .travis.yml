@@ -78,5 +78,6 @@ script:
   - chmod 700 sandbox/etc/dkim.localhost.localdomain.pem
   - chmod 700 sandbox/etc/dime.localhost.localdomain.key
   - chmod 700 sandbox/etc/dime.localhost.localdomain.signet
-  - make --jobs=4 all && dev/scripts/launch/check.run.sh
+  - env  
+  - CC="$COMPILER" CFLAGS="$FLAGS" make --keep-going --jobs=4 $TARGET && dev/scripts/launch/check.run.sh
  
