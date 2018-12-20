@@ -20,20 +20,20 @@ matrix:
   - stage: run
     dist: trusty
     before_script:
-      - export FLAGS='-DMAGMA_PEDANTIC -O0' ; export TARGET=all
+      - sudo echo "export FLAGS='-DMAGMA_PEDANTIC -O0' ; export TARGET=all" > /etc/profile.d/params.sh
   - stage: run
     dist: trusty
     before_script:
-      - export FLAGS='-UMAGMA_PEDANTIC -O0' ; export TARGET=all
+      - sudo echo "export FLAGS='-UMAGMA_PEDANTIC -O0' ; export TARGET=all" > /etc/profile.d/params.sh
   - stage: run
     dist: xenial
     before_script:
-      - export FLAGS='-DMAGMA_PEDANTIC -O0' ; export TARGET=all
+      - sudo echo "export FLAGS='-DMAGMA_PEDANTIC -O0' ; export TARGET=all" > /etc/profile.d/params.sh
       - sudo systemctl start mysql && sudo systemctl start postfix && sudo systemctl start memcached
   - stage: run
     dist: xenial
     before_script:
-      - export FLAGS='-UMAGMA_PEDANTIC -O0' ; export TARGET=all
+      - sudo echo "export FLAGS='-UMAGMA_PEDANTIC -O0' ; export TARGET=all" > /etc/profile.d/params.sh
       - sudo systemctl start mysql && sudo systemctl start postfix && sudo systemctl start memcached
 before_install:
   - sudo -E apt-add-repository -y "ppa:ubuntu-toolchain-r/test"
@@ -47,6 +47,7 @@ install:
   - if [ "`lsb_release -c -s`" == "xenial" ]; then sudo -E apt-get -yq --no-install-suggests --no-install-recommends install memcached mysql-client mysql-server; fi
   - find /var/cache/apt/archives/ -maxdepth 1 -type f -name "*.deb" -exec cp {} $HOME/packages/ \;
 script: 
+  - env
   - export HOSTNAME=`hostname`
   - mysql -e "CREATE DATABASE Sandbox;"
   - mysql -e "CREATE USER 'mytool'@'localhost' IDENTIFIED BY 'aComplex1';"
@@ -81,6 +82,5 @@ script:
   - chmod 700 sandbox/etc/dkim.localhost.localdomain.pem
   - chmod 700 sandbox/etc/dime.localhost.localdomain.key
   - chmod 700 sandbox/etc/dime.localhost.localdomain.signet
-  - env  
   - CC="$COMPILER" CFLAGS="$FLAGS" make --keep-going --jobs=4 $TARGET && dev/scripts/launch/check.run.sh
  
