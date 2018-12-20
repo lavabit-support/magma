@@ -55,9 +55,9 @@ script:
   - mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'mytool'@'localhost' WITH GRANT OPTION;"
   - cd $HOME && curl --location --output util-linux-2.25.2.tar.gz https://www.kernel.org/pub/linux/utils/util-linux/v2.25/util-linux-2.25.2.tar.gz
   - tar xzf util-linux-2.25.2.tar.gz && cd util-linux-2.25.2
-  - ./configure ADJTIME_PATH=/var/lib/hwclock/adjtime --disable-chfn-chsh --disable-login --disable-nologin --disable-su --disable-setpriv --disable-runuser --disable-pylibmount --disable-static --without-python --without-systemd --without-systemdsystemunitdir --without-ncurses
-  - make prlimit && install --verbose --directory $HOME/bin/ && install --verbose --mode=755 prlimit $HOME/bin/prlimit && cd $TRAVIS_BUILD_DIR
-  - export HASH=`git show  --quiet | grep commit | awk -F' ' '{print $2}'`
+  - ./configure ADJTIME_PATH=/var/lib/hwclock/adjtime --quiet --disable-chfn-chsh --disable-login --disable-nologin --disable-su --disable-setpriv --disable-runuser --disable-pylibmount --disable-static --without-python --without-systemd --without-systemdsystemunitdir --without-ncurses
+  - make prlimit && install --directory $HOME/bin/ && install --mode=755 prlimit $HOME/bin/prlimit && cd $TRAVIS_BUILD_DIR
+  - export HASH=`git show --quiet | grep commit | awk -F' ' '{print $2}'`
   - git remote add upstream https://github.com/lavabit/magma.git
   - git fetch upstream
   - git reset --hard upstream/develop
