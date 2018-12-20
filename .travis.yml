@@ -14,7 +14,6 @@ matrix:
   - stage: cache
     dist: trusty
     script: true
-    before_script: true
   - stage: cache
     dist: xenial
     script: true
