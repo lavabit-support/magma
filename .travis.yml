@@ -12,25 +12,31 @@ cache:
 matrix:
   include:
   - stage: cache
+    name: Trusty Cache Update
     dist: trusty
     script: true
   - stage: cache
+    name: Xenial Cache Update
     dist: xenial
     script: true
-  - stage: run
+  - stage: run 
+    name: Trusty / GCC / PEDANTIC / 0
     dist: trusty
     before_script:
       -  export FLAGS='-DMAGMA_PEDANTIC -O0' ; export TARGET=all ; export COMPILER=gcc
   - stage: run
+    name: Trusty / GCC / NON-PEDANTIC / 0
     dist: trusty
     before_script:
       -  export FLAGS='-UMAGMA_PEDANTIC -O0' ; export TARGET=all ; export COMPILER=gcc
   - stage: run
+    name: Xenial / GCC / PEDANTIC / 0
     dist: xenial
     before_script:
       - export FLAGS='-DMAGMA_PEDANTIC -O0' ; export TARGET=all ; export COMPILER=gcc
       - sudo systemctl start mysql && sudo systemctl start postfix && sudo systemctl start memcached
   - stage: run
+    name: Xenial / GCC / NON-PEDANTIC / 0
     dist: xenial
     before_script:
       - export FLAGS='-UMAGMA_PEDANTIC -O0' ; export TARGET=all ; export COMPILER=gcc
