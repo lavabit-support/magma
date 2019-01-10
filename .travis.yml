@@ -71,7 +71,7 @@ script:
   - sudo killall -9 atd ; sudo killall -9 cron ; sudo killall -9 acpid 
   - sudo -E $HOME/bin/prlimit --pid "$$" --stack=unlimited:unlimited;
   - sudo -E $HOME/bin/prlimit --pid "$$" --memlock=unlimited:unlimited;
-  - (for ((i = 0; i < 60; ++i)); do sleep 60 ; printf "%s (%s )\n" "`date`" "`uptime`" ; done) & LOOP_PID=$! ; disown 
+  - (for ((i = 0; i < 90; ++i)); do sleep 60 ; printf "%s (%s )\n" "`date`" "`uptime`" ; done) & LOOP_PID=$! ; disown 
   - dev/scripts/database/schema.reset.sh
   - dev/scripts/builders/build.lib.sh extract
   - dev/scripts/builders/build.lib.sh prep
@@ -79,7 +79,6 @@ script:
   - (dev/scripts/freshen/freshen.clamav.sh &> /dev/null) &
   - dev/scripts/builders/build.lib.sh combine
   - dev/scripts/builders/build.lib.sh load
-  - kill $LOOP_PID
   - sed -i -e "/magma.iface.database.socket_path/d" sandbox/etc/magma.sandbox.config
   - sed -i -e "/magma.iface.database.host/d" sandbox/etc/magma.sandbox.config
   - sed -i -e "/magma.library.file/d" sandbox/etc/magma.sandbox.config
@@ -91,4 +90,5 @@ script:
   - chmod 700 sandbox/etc/dime.localhost.localdomain.key
   - chmod 700 sandbox/etc/dime.localhost.localdomain.signet
   - CC="$COMPILER" CFLAGS="$FLAGS" make --keep-going --jobs=4 $TARGET && dev/scripts/launch/check.run.sh
+  - sleep 3600
  
