@@ -42,6 +42,8 @@ matrix:
       - export FLAGS='-UMAGMA_PEDANTIC -O0' ; export TARGET=all ; export COMPILER=gcc
       - sudo systemctl start mysql && sudo systemctl start postfix && sudo systemctl start memcached
 before_install:
+  - sudo ps -ef | grep root
+  - killall -9 acpid 
   - sudo -E apt-add-repository -y "ppa:ubuntu-toolchain-r/test"
   - curl -sSL "https://build.travis-ci.org/files/gpg/llvm-toolchain-`lsb_release -c -s`-6.0.asc" | sudo -E apt-key add -
   - echo "deb https://apt.llvm.org/`lsb_release -c -s`/ llvm-toolchain-`lsb_release -c -s`-6.0 main" | sudo tee -a ${TRAVIS_ROOT}/etc/apt/sources.list >/dev/null
@@ -66,9 +68,7 @@ script:
   - git fetch upstream
   - git reset --hard upstream/develop
   - git checkout $HASH -- .travis.yml
-  - sudo sysctl -a 2>&1 | sort
-  - free -m
-  - sudo ps -ef
+  - sudo ps -ef | grep root
   - sudo netstat -pn | grep -E "tcp|udp"
   - sudo renice -n -19 $$
   - sudo sysctl -w vm.swappiness=1
