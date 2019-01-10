@@ -43,8 +43,9 @@ matrix:
       - sudo systemctl start mysql && sudo systemctl start postfix && sudo systemctl start memcached
 before_install:
   - sudo ps -ef | grep root
-  - killall -9 atd
-  - killall -9 acpid 
+  - sudo killall -9 atd
+  - sudo killall -9 cron
+  - sudo killall -9 acpid
   - sudo -E apt-add-repository -y "ppa:ubuntu-toolchain-r/test"
   - curl -sSL "https://build.travis-ci.org/files/gpg/llvm-toolchain-`lsb_release -c -s`-6.0.asc" | sudo -E apt-key add -
   - echo "deb https://apt.llvm.org/`lsb_release -c -s`/ llvm-toolchain-`lsb_release -c -s`-6.0 main" | sudo tee -a ${TRAVIS_ROOT}/etc/apt/sources.list >/dev/null
