@@ -42,10 +42,6 @@ matrix:
       - export FLAGS='-UMAGMA_PEDANTIC -O0' ; export TARGET=all ; export COMPILER=gcc
       - sudo systemctl start mysql && sudo systemctl start postfix && sudo systemctl start memcached
 before_install:
-  - sudo ps -ef | grep root
-  - sudo killall -9 atd
-  - sudo killall -9 cron
-  - sudo killall -9 acpid
   - sudo -E apt-add-repository -y "ppa:ubuntu-toolchain-r/test"
   - curl -sSL "https://build.travis-ci.org/files/gpg/llvm-toolchain-`lsb_release -c -s`-6.0.asc" | sudo -E apt-key add -
   - echo "deb https://apt.llvm.org/`lsb_release -c -s`/ llvm-toolchain-`lsb_release -c -s`-6.0 main" | sudo tee -a ${TRAVIS_ROOT}/etc/apt/sources.list >/dev/null
@@ -70,10 +66,9 @@ script:
   - git fetch upstream
   - git reset --hard upstream/develop
   - git checkout $HASH -- .travis.yml
-  - sudo ps -ef | grep root
-  - sudo netstat -pn | grep -E "tcp|udp"
-  - sudo renice -n -19 $$
-  - sudo sysctl -w vm.swappiness=1
+  - sudo renice --priority -19 $$
+  - sudo sysctl --quiet --write vm.swappiness=1
+  - sudo killall -9 atd ; sudo killall -9 cron ; sudo killall -9 acpid 
   - sudo -E $HOME/bin/prlimit --pid "$$" --stack=unlimited:unlimited;
   - sudo -E $HOME/bin/prlimit --pid "$$" --memlock=unlimited:unlimited;
   - (for ((i = 0; i < 60; ++i)); do sleep 60 ; printf "%s (%s )\n" "`date`" "`uptime`" ; done) & LOOP_PID=$! ; disown 
