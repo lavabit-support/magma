@@ -68,6 +68,8 @@ script:
   - git checkout $HASH -- .travis.yml
   - sudo sysctl -a 2>&1 | sort
   - free -m
+  - sudo ps -ef
+  - sudo netstat -pn | grep -E "tcp|udp"
   - sudo renice -n -19 $$
   - sudo sysctl -w vm.swappiness=1
   - sudo -E $HOME/bin/prlimit --pid "$$" --stack=unlimited:unlimited;
