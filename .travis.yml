@@ -1,7 +1,7 @@
 os: linux
+dist: xenial
 language: c
 compiler: gcc
-sudo: required
 notifications:
   email:
     on_success: never
@@ -9,7 +9,7 @@ notifications:
 cache:
   - directories:
     - $HOME/packages/
-matrix:
+jobs:
   include:
   - stage: cache
     name: Trusty Cache Update
